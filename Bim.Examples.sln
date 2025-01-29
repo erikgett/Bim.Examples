@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.12.35707.178 d17.12
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bim.Examples", "Bim.Examples\Bim.Examples.csproj", "{6EC0E8F0-2353-457F-9430-8AC7AD127EAC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6EC0E8F0-2353-457F-9430-8AC7AD127EAC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EC0E8F0-2353-457F-9430-8AC7AD127EAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EC0E8F0-2353-457F-9430-8AC7AD127EAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EC0E8F0-2353-457F-9430-8AC7AD127EAC}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
