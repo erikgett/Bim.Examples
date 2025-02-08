@@ -2,7 +2,7 @@
 
 namespace Bim.Examples
 {
-    public class RevitAplication
+    public class RevitApplication
         : IExternalApplication
     {
         public Result OnStartup(UIControlledApplication application)

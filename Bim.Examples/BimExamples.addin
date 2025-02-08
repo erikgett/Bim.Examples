@@ -4,7 +4,7 @@
 		<Name>BimExamples</Name>
 		<Assembly>Bim.Examples.dll</Assembly>
 		<ClientId>7164BABA-2F55-4FE2-AC14-4E01308577A7</ClientId>
-		<FullClassName>Bim.Examples.RevitAplication</FullClassName>
+		<FullClassName>Bim.Examples.RevitApplication</FullClassName>
 		<VendorId>bimtech</VendorId>
 		<Publisher>bimtech</Publisher>
 		<VendorDescription>bimtech@.uf</VendorDescription>
