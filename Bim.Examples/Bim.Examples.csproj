@@ -1,25 +1,251 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <OutputType>Library</OutputType>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-  </PropertyGroup>
-  <ItemGroup>
-    <None Remove="BimExamples.addin" />
-    <None Remove="Runner.txt" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2021.1.9" />
-  </ItemGroup>
-  <PropertyGroup>
-    <PreBuildEvent>copy "$(ProjectDir)BimExamples.addin" "$(TargetDir)"
-copy "$(ProjectDir)Runner.txt" "$(TargetDir)"</PreBuildEvent>
-  </PropertyGroup>
-  <PropertyGroup>
-    <PostBuildEvent>for %25%25f in ("$(TargetDir)*journal*.*") do del "%25%25f"</PostBuildEvent>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<Configurations>R17_Debug;R17_Release;R18_Debug;R18_Release;R19_Debug;R19_Release;R20_Debug;R20_Release;R21_Debug;R21_Release;R22_Debug;R22_Release;R23_Debug;R23_Release;R24_Debug;R24_Release;R25_Debug;R25_Release</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="BimExamples.addin" />
+		<None Remove="Runner.txt" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2017.0.2" Condition="$([System.String]::new('$(Configuration)').StartsWith('R17'))" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2018.0.2" Condition="$([System.String]::new('$(Configuration)').StartsWith('R18'))" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2019.0.1" Condition="$([System.String]::new('$(Configuration)').StartsWith('R19'))" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2020.0.1" Condition="$([System.String]::new('$(Configuration)').StartsWith('R20'))" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2021.1.9" Condition="$([System.String]::new('$(Configuration)').StartsWith('R21'))" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2022.1.0" Condition="$([System.String]::new('$(Configuration)').StartsWith('R22'))" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2023.0.0" Condition="$([System.String]::new('$(Configuration)').StartsWith('R23'))" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2024.2.0" Condition="$([System.String]::new('$(Configuration)').StartsWith('R24'))" />
+		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2025.0.0" Condition="$([System.String]::new('$(Configuration)').StartsWith('R25'))" />
+
+	</ItemGroup>
+
+	<PropertyGroup>
+		<PreBuildEvent>if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\BimExamples.addin" copy "$(MSBuildProjectDirectory)\BimExamples.addin" "$(MSBuildProjectDirectory)\bin\$(Configuration)\"
+if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "$(MSBuildProjectDirectory)\Runner.txt" "$(MSBuildProjectDirectory)\bin\$(Configuration)\"
+		</PreBuildEvent>
+		<PostBuildEvent>for %%f in ("$(MSBuildProjectDirectory)\$(OutputPath)*journal*.*") do del "%%f"</PostBuildEvent>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R17_Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R17_Debug\</OutputPath>
+		<DefineConstants>DEBUG;R17</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2017\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R17_Release|AnyCPU'">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R17_Release\</OutputPath>
+		<DefineConstants>R17</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2017\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R18_Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R18_Debug\</OutputPath>
+		<DefineConstants>DEBUG;R18</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2018\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R18_Release|AnyCPU'">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R18_Release\</OutputPath>
+		<DefineConstants>R18</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2018\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R19_Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R19_Debug\</OutputPath>
+		<DefineConstants>DEBUG;R19</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2019\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R19_Release|AnyCPU'">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R19_Release\</OutputPath>
+		<DefineConstants>R19</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2019\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R20_Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R20_Debug\</OutputPath>
+		<DefineConstants>DEBUG;R20</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2020\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R20_Release|AnyCPU'">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R20_Release\</OutputPath>
+		<DefineConstants>R20</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2020\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R21_Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R21_Debug\</OutputPath>
+		<DefineConstants>DEBUG;R21</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2021\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R21_Release|AnyCPU'">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R21_Release\</OutputPath>
+		<DefineConstants>R21</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2021\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R22_Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R22_Debug\</OutputPath>
+		<DefineConstants>DEBUG;R22</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2022\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R22_Release|AnyCPU'">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R22_Release\</OutputPath>
+		<DefineConstants>R22</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2022\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R23_Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R23_Debug\</OutputPath>
+		<DefineConstants>DEBUG;R23</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2023\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R23_Release|AnyCPU'">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R23_Release\</OutputPath>
+		<DefineConstants>R23</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2023\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R24_Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R24_Debug\</OutputPath>
+		<DefineConstants>DEBUG;R24</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2024\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R24_Release|AnyCPU'">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<TargetFramework>net48</TargetFramework>
+		<OutputPath>bin\R24_Release\</OutputPath>
+		<DefineConstants>R24</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2024\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R25_Debug|AnyCPU'">
+		<DebugSymbols>true</DebugSymbols>
+		<Optimize>false</Optimize>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<OutputPath>bin\R25_Debug\</OutputPath>
+		<DefineConstants>DEBUG;R25</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2025\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R25_Release|AnyCPU'">
+		<DebugSymbols>false</DebugSymbols>
+		<Optimize>true</Optimize>
+		<TargetFramework>net8.0-windows</TargetFramework>
+		<OutputPath>bin\R25_Release\</OutputPath>
+		<DefineConstants>R25</DefineConstants>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<StartAction>Program</StartAction>
+		<StartProgram>C:\Program Files\Autodesk\Revit 2025\Revit.exe</StartProgram>
+		<StartArguments>Runner.txt</StartArguments>
+	</PropertyGroup>
 </Project>

@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Bim.Examples": {
+      "commandName": "Project",
+      "commandLineArgs": "Runner.txt"
+    }
+  }
+}
