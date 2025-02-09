@@ -27,6 +27,7 @@
 	</ItemGroup>
 
 	<PropertyGroup>
+		<LangVersion>13.0</LangVersion>
 		<PreBuildEvent>if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\BimExamples.addin" copy "$(MSBuildProjectDirectory)\BimExamples.addin" "$(MSBuildProjectDirectory)\bin\$(Configuration)\"
 if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "$(MSBuildProjectDirectory)\Runner.txt" "$(MSBuildProjectDirectory)\bin\$(Configuration)\"
 		</PreBuildEvent>
