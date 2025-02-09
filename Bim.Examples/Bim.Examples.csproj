@@ -36,7 +36,7 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R17_Debug|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
 		<Optimize>false</Optimize>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net46</TargetFramework>
 		<OutputPath>bin\R17_Debug\</OutputPath>
 		<DefineConstants>DEBUG;R17</DefineConstants>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -48,7 +48,7 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R17_Release|AnyCPU'">
 		<DebugSymbols>false</DebugSymbols>
 		<Optimize>true</Optimize>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net46</TargetFramework>
 		<OutputPath>bin\R17_Release\</OutputPath>
 		<DefineConstants>R17</DefineConstants>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -60,7 +60,7 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R18_Debug|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
 		<Optimize>false</Optimize>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net46</TargetFramework>
 		<OutputPath>bin\R18_Debug\</OutputPath>
 		<DefineConstants>DEBUG;R18</DefineConstants>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -72,7 +72,7 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R18_Release|AnyCPU'">
 		<DebugSymbols>false</DebugSymbols>
 		<Optimize>true</Optimize>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net46</TargetFramework>
 		<OutputPath>bin\R18_Release\</OutputPath>
 		<DefineConstants>R18</DefineConstants>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -84,7 +84,7 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R19_Debug|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
 		<Optimize>false</Optimize>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net47</TargetFramework>
 		<OutputPath>bin\R19_Debug\</OutputPath>
 		<DefineConstants>DEBUG;R19</DefineConstants>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -96,7 +96,7 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R19_Release|AnyCPU'">
 		<DebugSymbols>false</DebugSymbols>
 		<Optimize>true</Optimize>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net47</TargetFramework>
 		<OutputPath>bin\R19_Release\</OutputPath>
 		<DefineConstants>R19</DefineConstants>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -108,7 +108,7 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R20_Debug|AnyCPU'">
 		<DebugSymbols>true</DebugSymbols>
 		<Optimize>false</Optimize>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net47</TargetFramework>
 		<OutputPath>bin\R20_Debug\</OutputPath>
 		<DefineConstants>DEBUG;R20</DefineConstants>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
@@ -120,7 +120,7 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R20_Release|AnyCPU'">
 		<DebugSymbols>false</DebugSymbols>
 		<Optimize>true</Optimize>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net47</TargetFramework>
 		<OutputPath>bin\R20_Release\</OutputPath>
 		<DefineConstants>R20</DefineConstants>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
