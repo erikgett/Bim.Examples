@@ -11,6 +11,7 @@ namespace Bim.Examples;
 public class RevitApplication
     : IExternalApplication
 {
+    /// <inheritdoc/>
     public Result OnStartup(UIControlledApplication application)
     {
         int a = 4;
