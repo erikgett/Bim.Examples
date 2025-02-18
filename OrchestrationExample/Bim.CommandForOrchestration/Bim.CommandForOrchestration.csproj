@@ -16,9 +16,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Chuongmep.Navis.Api.Autodesk.Navisworks.Api" Version="2021.0.2" />
-		<PackageReference Include="Chuongmep.Navis.Api.Autodesk.Navisworks.Automation" Version="2021.0.2" />
-		<PackageReference Include="Chuongmep.Navis.Api.Autodesk.Navisworks.Clash" Version="2021.0.2" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 		  <PrivateAssets>all</PrivateAssets>
@@ -36,10 +33,6 @@
 		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2024.2.0" Condition="$(Configuration.Contains('R24'))" />
 		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2025.0.0" Condition="$(Configuration.Contains('R25'))" />
 
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Reference Include="PresentationCore" />
 	</ItemGroup>
 
 	<PropertyGroup>
@@ -75,7 +68,6 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 		<StartAction>Program</StartAction>
 		<StartProgram>C:\Program Files\Autodesk\Revit 2017\Revit.exe</StartProgram>
 		<StartArguments>Runner.txt</StartArguments>
-		<PackageVersion>2017.0.1</PackageVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R18_Debug|AnyCPU'">
@@ -100,7 +92,6 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 		<StartAction>Program</StartAction>
 		<StartProgram>C:\Program Files\Autodesk\Revit 2018\Revit.exe</StartProgram>
 		<StartArguments>Runner.txt</StartArguments>
-		<PackageVersion>2018.0.1</PackageVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R19_Debug|AnyCPU'">
@@ -125,7 +116,6 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 		<StartAction>Program</StartAction>
 		<StartProgram>C:\Program Files\Autodesk\Revit 2019\Revit.exe</StartProgram>
 		<StartArguments>Runner.txt</StartArguments>
-		<PackageVersion>2019.0.1</PackageVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R20_Debug|AnyCPU'">
@@ -150,7 +140,6 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 		<StartAction>Program</StartAction>
 		<StartProgram>C:\Program Files\Autodesk\Revit 2020\Revit.exe</StartProgram>
 		<StartArguments>Runner.txt</StartArguments>
-		<PackageVersion>2020.0.1</PackageVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R21_Debug|AnyCPU'">
@@ -175,7 +164,6 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 		<StartAction>Program</StartAction>
 		<StartProgram>C:\Program Files\Autodesk\Revit 2021\Revit.exe</StartProgram>
 		<StartArguments>Runner.txt</StartArguments>
-		<PackageVersion>2021.0.1</PackageVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R22_Debug|AnyCPU'">
@@ -200,7 +188,6 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 		<StartAction>Program</StartAction>
 		<StartProgram>C:\Program Files\Autodesk\Revit 2022\Revit.exe</StartProgram>
 		<StartArguments>Runner.txt</StartArguments>
-		<PackageVersion>2022.0.1</PackageVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R23_Debug|AnyCPU'">
@@ -225,7 +212,6 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 		<StartAction>Program</StartAction>
 		<StartProgram>C:\Program Files\Autodesk\Revit 2023\Revit.exe</StartProgram>
 		<StartArguments>Runner.txt</StartArguments>
-		<PackageVersion>2023.0.1</PackageVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R24_Debug|AnyCPU'">
@@ -250,7 +236,6 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 		<StartAction>Program</StartAction>
 		<StartProgram>C:\Program Files\Autodesk\Revit 2024\Revit.exe</StartProgram>
 		<StartArguments>Runner.txt</StartArguments>
-		<PackageVersion>2024.0.1</PackageVersion>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'R25_Debug|AnyCPU'">
@@ -275,6 +260,5 @@ if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "
 		<StartAction>Program</StartAction>
 		<StartProgram>C:\Program Files\Autodesk\Revit 2025\Revit.exe</StartProgram>
 		<StartArguments>Runner.txt</StartArguments>
-		<PackageVersion>2025.0.1</PackageVersion>
 	</PropertyGroup>
 </Project>
