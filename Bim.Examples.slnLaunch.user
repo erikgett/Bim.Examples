@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "Server+Revit",
+    "Projects": [
+      {
+        "Path": "OrchestrationExample\\Bim.CommandForOrchestration\\Bim.CommandForOrchestration.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "OrchestrationExample\\Bim.Orchestrator.Server\\Bim.Orchestrator.Server.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

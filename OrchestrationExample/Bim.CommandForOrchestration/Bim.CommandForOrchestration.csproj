@@ -7,7 +7,6 @@
 
 	<ItemGroup>
 		<None Remove="BimExamples.addin" />
-		<None Remove="Runner.txt" />
 		<None Remove="stylecop.json" />
 	</ItemGroup>
 
@@ -17,6 +16,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -35,12 +35,16 @@
 
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Reference Include="System.Net.Http" />
+	</ItemGroup>
+
 	<PropertyGroup>
 		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 			None
 		</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 		<LangVersion>13.0</LangVersion>
-		<PreBuildEvent>if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\BimExamples.addin" copy "$(MSBuildProjectDirectory)\BimExamples.addin" "$(MSBuildProjectDirectory)\bin\$(Configuration)\"
+		<PreBuildEvent>if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Bim.CommandForOrchestration.addin" copy "$(MSBuildProjectDirectory)\Bim.CommandForOrchestration.addin" "$(MSBuildProjectDirectory)\bin\$(Configuration)\"
 if not exist "$(MSBuildProjectDirectory)\bin\$(Configuration)\Runner.txt" copy "$(MSBuildProjectDirectory)\Runner.txt" "$(MSBuildProjectDirectory)\bin\$(Configuration)\"
 		</PreBuildEvent>
 		<PostBuildEvent>for %%f in ("$(MSBuildProjectDirectory)\$(OutputPath)*journal*.*") do del "%%f"</PostBuildEvent>

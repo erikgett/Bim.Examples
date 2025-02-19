@@ -1,6 +1,0 @@
-@Bim.Orchestrator.Server_HostAddress = http://localhost:5140
-
-GET {{Bim.Orchestrator.Server_HostAddress}}/weatherforecast/
-Accept: application/json
-
-###

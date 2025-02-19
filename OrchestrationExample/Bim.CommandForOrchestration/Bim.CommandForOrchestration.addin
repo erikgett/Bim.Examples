@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RevitAddIns>
-	<AddIn Type="Application">
-		<Name>BimExamples</Name>
+	<AddIn Type="Command">
+		<Text>BimExamples</Text>
 		<Assembly>Bim.CommandForOrchestration.dll</Assembly>
+		<Description>command autorun example</Description>
 		<ClientId>7164BABA-2F55-4FE2-AC14-4E01308577A7</ClientId>
-		<FullClassName>Bim.CommandForOrchestration.RevitApplication</FullClassName>
+		<FullClassName>Bim.CommandForOrchestration.RevitCommand</FullClassName>
 		<VendorId>bimtech</VendorId>
 		<Publisher>bimtech</Publisher>
 		<VendorDescription>bimtech@.uf</VendorDescription>
