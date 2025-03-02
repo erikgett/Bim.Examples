@@ -27,7 +27,7 @@ public class NavisRunner
     /// <summary> Using started app off Navisworks and run plugin for export report. </summary>
     /// <param name="filePath">absolute path to nwf file.</param>
     /// <param name="commandName">Relative path to command on navis ribbon panel.</param>
-    public void GenerateCollisionReport(string filePath, string commandName = "NavisReportCreater.ClashReport.Report")
+    public void ExecuteCommand(string filePath, string commandName = "Navis.Example.Command")
     {
         try
         {
