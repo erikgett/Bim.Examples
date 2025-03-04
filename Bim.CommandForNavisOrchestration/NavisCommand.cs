@@ -1,4 +1,5 @@
 ﻿using Autodesk.Navisworks.Api.Plugins;
+using System.Diagnostics;
 
 namespace Bim.CommandForNavisOrchestration;
 
@@ -36,5 +37,6 @@ public class NavisCommand : AddInPlugin
     private void ExecuteTask()
     {
         // Task execution logic goes here
+        Process.Start("notepad.exe");
     }
 }

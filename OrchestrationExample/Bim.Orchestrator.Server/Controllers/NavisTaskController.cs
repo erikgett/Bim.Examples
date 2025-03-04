@@ -51,7 +51,9 @@ public class NavisTaskController : ControllerBase
                     try
                     {
                         NavisRunner navisRunner = new ();
-                        navisRunner.ExecuteCommand(filePath);
+                        navisRunner.ExecuteCommand(
+                            filePath,
+                            "Bim.CommandForNavisOrchestration.NavisCommand.FirstCommand");
                         navisRunner.Kill();
                     }
                     catch

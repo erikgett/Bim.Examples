@@ -10,7 +10,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Bim.CommandForNavisOrchestration</RootNamespace>
     <AssemblyName>Bim.CommandForNavisOrchestration</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <TargetFrameworkProfile />
@@ -19,7 +19,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2020\Plugins\</OutputPath>
+    <OutputPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2020\Plugins\Bim.CommandForNavisOrchestration\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -34,13 +34,11 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autodesk.Navisworks.Api, Version=17.0.1336.83, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\packages\Chuongmep.Navis.Api.Autodesk.Navisworks.Api.2020.0.4\lib\net47\Autodesk.Navisworks.Api.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Autodesk.Navisworks.Api">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2020\Autodesk.Navisworks.Api.dll</HintPath>
     </Reference>
-    <Reference Include="Autodesk.Navisworks.Clash, Version=17.0.1336.83, Culture=neutral, PublicKeyToken=d85e58fa5af9b484, processorArchitecture=AMD64">
-      <HintPath>..\packages\Chuongmep.Navis.Api.Autodesk.Navisworks.Clash.2020.0.4\lib\net47\Autodesk.Navisworks.Clash.dll</HintPath>
-      <Private>False</Private>
+    <Reference Include="Autodesk.Navisworks.Clash">
+      <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2020\Autodesk.Navisworks.Clash.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -54,9 +52,6 @@
   <ItemGroup>
     <Compile Include="NavisCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

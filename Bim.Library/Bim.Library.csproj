@@ -16,9 +16,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Chuongmep.Navis.Api.Autodesk.Navisworks.Api" Version="2021.0.2" />
-		<PackageReference Include="Chuongmep.Navis.Api.Autodesk.Navisworks.Automation" Version="2021.0.2" />
-		<PackageReference Include="Chuongmep.Navis.Api.Autodesk.Navisworks.Clash" Version="2021.0.2" />
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 		  <PrivateAssets>all</PrivateAssets>
@@ -39,6 +36,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Reference Include="Autodesk.Navisworks.Automation">
+	    <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Navisworks Manage 2020\Autodesk.Navisworks.Automation.dll</HintPath>
+	  </Reference>
 	  <Reference Include="PresentationCore" />
 	</ItemGroup>
 
