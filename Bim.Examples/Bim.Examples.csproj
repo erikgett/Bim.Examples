@@ -7,6 +7,7 @@
 
 	<ItemGroup>
 		<None Remove="BimExamples.addin" />
+		<None Remove="Resources\ExportToDatabase.png" />
 		<None Remove="Runner.txt" />
 		<None Remove="stylecop.json" />
 	</ItemGroup>
@@ -17,6 +18,10 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
+		<PackageReference Include="Serilog" Version="4.2.0" />
+		<PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
+		<PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="4.1.1" />
 		<PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
 		  <PrivateAssets>all</PrivateAssets>
 		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -33,6 +38,14 @@
 		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2024.2.0" Condition="$(Configuration.Contains('R24'))" />
 		<PackageReference Include="Revit_All_Main_Versions_API_x64" Version="2025.0.0" Condition="$(Configuration.Contains('R25'))" />
 
+	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Bim.Library\Bim.Library.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Resource Include="Resources\ExportToDatabase.png" />
 	</ItemGroup>
 
 	<PropertyGroup>

@@ -1,0 +1,28 @@
+﻿// <copyright file="PostgresDataExporter.cs" company="IT4BIM">
+// Copyright (c) IT4BIM. All rights reserved.
+// Licensed under the NC license. See LICENSE.md file in the project root for full license information.
+// </copyright>
+
+using Autodesk.Revit.DB;
+using Microsoft.Extensions.Logging;
+
+namespace Bim.Examples.DataExport;
+
+public class PostgresDataExporter(ILogger<PostgresDataExporter> logger)
+    : IDataExporter
+{
+    public void CreateDatabase()
+    {
+        logger.LogInformation("PostgreSQL: Database creation started.");
+    }
+
+    public void UpdateData(Document doc)
+    {
+        logger.LogInformation($"PostgreSQL: Data update started. for file - {doc.Title}");
+    }
+
+    public void DeleteOldData(Document doc)
+    {
+        logger.LogInformation($"PostgreSQL: Old data deletion started. from file {doc.Title}");
+    }
+}

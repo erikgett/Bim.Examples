@@ -5,6 +5,9 @@
 
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
+using Bim.Examples.RevitCommands;
+using Bim.Library.RevitUIExtensions;
+using Bim.Library.Tools;
 
 namespace Bim.Examples;
 
@@ -14,9 +17,19 @@ public class RevitApplication
     /// <inheritdoc/>
     public Result OnStartup(UIControlledApplication application)
     {
-        int a = 4;
-        int b = 5;
-        int c = a + b;
+        ResolveHelper.BeginAssemblyResolve<RevitApplication>();
+        Host.Start();
+
+        application.CreateRibbonTab("IT4BIM");
+        RibbonPanel diExampplePanel = application.GetOrCreateRibbonPanel("DI_Example");
+
+        diExampplePanel.CreateButton<ExportToDatabase>(
+            "exportData",
+            "di example for export data",
+            "ExportToDatabase.png");
+
+        ResolveHelper.EndAssemblyResolve();
+
         return Result.Succeeded;
     }
 
