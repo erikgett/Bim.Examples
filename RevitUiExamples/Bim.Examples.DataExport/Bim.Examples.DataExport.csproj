@@ -41,7 +41,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\Bim.Library\Bim.Library.csproj" />
+	  <ProjectReference Include="..\..\Bim.Library\Bim.Library.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

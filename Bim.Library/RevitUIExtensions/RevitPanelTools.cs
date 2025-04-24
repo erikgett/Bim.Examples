@@ -18,6 +18,11 @@ public static class RevitPanelTools
     /// <param name="panelName">The name of the ribbon panel.</param>
     /// <param name="tabName">The name of the ribbon tab (default is IT4BIM).</param>
     /// <returns>The existing or newly created RibbonPanel.</returns>
-    public static RibbonPanel GetOrCreateRibbonPanel(this UIControlledApplication application, string panelName, string tabName = "IT4BIM") =>
-        application.GetRibbonPanels(tabName).FirstOrDefault(x => x.Name == panelName) ?? application.CreateRibbonPanel(tabName, panelName);
+    public static RibbonPanel GetOrCreateRibbonPanel(
+        this UIControlledApplication application,
+        string panelName,
+        string tabName = "IT4BIM") =>
+            application.GetRibbonPanels(tabName)
+            .FirstOrDefault(x => x.Name == panelName)
+            ?? application.CreateRibbonPanel(tabName, panelName);
 }

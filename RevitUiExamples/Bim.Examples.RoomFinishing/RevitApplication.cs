@@ -21,7 +21,6 @@ public class RevitApplication
         Host.Start();
 
         application.CreateRibbonTab("IT4BIM");
-
         RibbonPanel diExampplePanel = application.GetOrCreateRibbonPanel("DI_Example");
 
         diExampplePanel.CreateButton<ExportToDatabase>(

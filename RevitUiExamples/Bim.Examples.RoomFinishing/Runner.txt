@@ -1,0 +1,86 @@
+'
+Dim Jrn
+Set Jrn = CrsJournalScript
+Jrn.Directive "CategoryDisciplineFilter"  _
+        , -1
+Jrn.Directive "DisciplineOption"  _
+        , 32253
+Jrn.Directive "TabDisplayOptions"  _
+        , "StayOnModifyInProject", 0
+Jrn.Directive "TabDisplayOptions"  _
+        , "StayOnModifyInFamily", 1
+Jrn.Directive "TabDisplayOptions"  _
+        , "ActiveCtOnSelection", 1
+Jrn.Data "JournalDefaultTemplate"  _
+        , ""
+Jrn.Data "JournalDefaultViewDiscipline"  _
+        , "Coordination"
+Jrn.Directive "Version"  _
+        , "2021.000", "2.166"
+Jrn.Directive "Username"  _
+        , "bimtech"
+Jrn.Directive "AllowLinkSelection"  _
+        , 1
+Jrn.Directive "AllowFaceSelection"  _
+        , 0
+Jrn.Directive "AllowUnderlaySelection"  _
+        , 0
+Jrn.Directive "AllowPinnedSelection"  _
+        , 1
+Jrn.Directive "ThinLinesEnabled"  _
+        , 0
+Jrn.Directive "JournalDataAlignmentStationLabelSetIntervalMeters"  _
+        , 3280.83989501312317
+Jrn.Directive "JournalDataAlignmentStationLabelSetIntervalFeet"  _
+        , 100.00000000000000
+Jrn.Directive "JournalDataAlignmentStationLabelSetIntervalUsSurvey"  _
+        , 100.00020000040000
+Jrn.Directive "JournalDataAlignmentStationLabelSetOffsetMeters"  _
+        , 0.01640419947507
+Jrn.Directive "JournalDataAlignmentStationLabelSetOffsetFeet"  _
+        , 0.01041666666667
+Jrn.Directive "JournalDataAlignmentStationLabelSetOffsetUsSurvey"  _
+        , 0.01041668750004
+ Jrn.RibbonEvent "TabActivated:Архитектура"
+Jrn.Directive "IdleTimeTaskSymbol"  _
+        , "0.ExternalEvent"
+Jrn.Directive "IdleTimeTaskSymbol"  _
+        , "1.OnIdleTask"
+ Jrn.Command "Internal" , "Показать диалоговое окно «Профиль» , ID_DISPLAY_PROFILE_DIALOG"
+Jrn.Directive "CategoryDisciplineFilter"  _
+        , 31
+Jrn.Directive "DisciplineOption"  _
+        , 29181
+Jrn.Directive "TabDisplayOptions"  _
+        , "StayOnModifyInProject", 0
+Jrn.Directive "TabDisplayOptions"  _
+        , "StayOnModifyInFamily", 1
+Jrn.Directive "TabDisplayOptions"  _
+        , "ActiveCtOnSelection", 1
+Jrn.Directive "JournalDefaultTemplate"  _
+        , "Шаблон строительства=$AllUsersAppData\Templates\Russian\Construction-DefaultRUSRUS.rte, Архитектурный шаблон=$AllUsersAppData\Templates\Russian\DefaultRUSRUS.rte, Шаблон несущей конструкции=$AllUsersAppData\Templates\Russian\Structural Analysis-DefaultRUSRUS.rte, Шаблон механического оборудования=$AllUsersAppData\Templates\Russian\Mechanical-DefaultRUSRUS.rte, Шаблон системы=$AllUsersAppData\Templates\Russian\Systems-DefaultRUSRUS.rte, Шаблон электросети=$AllUsersAppData\Templates\Russian\Electrical-DefaultRUSRUS.rte, Шаблон сантехнического оборудования=$AllUsersAppData\Templates\Russian\Plumbing-DefaultRUSRUS.rte"
+Jrn.Directive "JournalDefaultViewDiscipline"  _
+        , "Coordination"
+Jrn.Directive "AllowLinkSelection"  _
+        , 1
+Jrn.Directive "AllowFaceSelection"  _
+        , 1
+Jrn.Directive "AllowUnderlaySelection"  _
+        , 0
+Jrn.Directive "AllowPinnedSelection"  _
+        , 1
+Jrn.Directive "ThinLinesEnabled"  _
+        , 1
+Jrn.Directive "JournalDataAlignmentStationLabelSetIntervalMeters"  _
+        , 3280.83989501312317
+Jrn.Directive "JournalDataAlignmentStationLabelSetIntervalFeet"  _
+        , 100.00000000000000
+Jrn.Directive "JournalDataAlignmentStationLabelSetIntervalUsSurvey"  _
+        , 100.00020000040000
+Jrn.Directive "JournalDataAlignmentStationLabelSetOffsetMeters"  _
+        , 0.01640419947507
+Jrn.Directive "JournalDataAlignmentStationLabelSetOffsetFeet"  _
+        , 0.01041666666667
+Jrn.Directive "JournalDataAlignmentStationLabelSetOffsetUsSurvey"  _
+        , 0.01041668750004
+
