@@ -9,6 +9,7 @@ using System.IO;
 using System.Reflection;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+
 using Autodesk.Revit.UI;
 
 namespace Bim.Library.RevitUIExtensions;
@@ -74,7 +75,7 @@ public static class RevitButtonTools
             longDescription = string.Empty;
         }
 
-        PushButtonData btnData = new(
+        PushButtonData btnData = new (
             Guid.NewGuid().ToString(),
             label,
             assemblyName,
@@ -185,12 +186,12 @@ public static class RevitButtonTools
         {
             var bitmapImage = GetIcon(iconImageName, typeof(TCommand).Assembly);
 
-            // Создание трансформированного изображения
+            // create transformed image.
             var transformedBitmap = new TransformedBitmap(
                 bitmapImage,
                 new ScaleTransform(16.0 / bitmapImage.PixelWidth, 16.0 / bitmapImage.PixelHeight));
 
-            // Конвертация в BitmapImage через MemoryStream
+            // convert to bitmapimage.
             var encoder = new PngBitmapEncoder();
             encoder.Frames.Add(BitmapFrame.Create(transformedBitmap));
 
