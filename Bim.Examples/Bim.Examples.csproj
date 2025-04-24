@@ -45,6 +45,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Reference Include="RevitNET">
+	    <HintPath>..\..\..\..\..\..\Program Files\Autodesk\Revit 2025\RevitNET.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Resource Include="Resources\ExportToDatabase.png" />
 	</ItemGroup>
 

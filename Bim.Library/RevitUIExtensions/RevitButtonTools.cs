@@ -5,7 +5,9 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Reflection;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using Autodesk.Revit.UI;
 
@@ -24,6 +26,7 @@ public static class RevitButtonTools
     /// <param name="helpURL">url to replay user by url link.</param>
     /// <param name="longDescription">longDescription for your button.</param>
     /// <param name="availabilityClass">The availability class type. (Optional).</param>
+    /// <param name="smallIconImageName">The name of the small image resource. (Optional).</param>
     /// <returns>The created <see cref="PushButton"/>.</returns>
     public static PushButton CreateButton<TCommand>(
         this RibbonPanel ribbonPanel,
@@ -33,10 +36,11 @@ public static class RevitButtonTools
         string tooltipImageName = null,
         string helpURL = null,
         string longDescription = null,
-        Type availabilityClass = null)
+        Type availabilityClass = null,
+        string smallIconImageName = null)
         where TCommand : IExternalCommand
     {
-        var btnData = CreatePushButtonData<TCommand>(label, tooltip, iconImageName, tooltipImageName, helpURL, longDescription, availabilityClass);
+        var btnData = CreatePushButtonData<TCommand>(label, tooltip, iconImageName, tooltipImageName, helpURL, longDescription, availabilityClass, smallIconImageName);
         return ribbonPanel.AddItem(btnData) as PushButton;
     }
 
@@ -49,6 +53,7 @@ public static class RevitButtonTools
     /// <param name="helpURL">url to replay user by url link.</param>
     /// <param name="longDescription">longDescription for your button.</param>
     /// <param name="availabilityClass">The availability class type. (Optional).</param>
+    /// <param name="smallIconImageName">The name of the small image resource. (Optional).</param>
     /// <returns>The created <see cref="PushButton"/>.</returns>
     public static PushButtonData CreatePushButtonData<TCommand>(
         string label,
@@ -57,7 +62,8 @@ public static class RevitButtonTools
         string tooltipImageName = null,
         string helpURL = null,
         string longDescription = null,
-        Type availabilityClass = null)
+        Type availabilityClass = null,
+        string smallIconImageName = null)
         where TCommand : IExternalCommand
     {
         string assemblyName = typeof(TCommand).Assembly.Location;
@@ -79,6 +85,7 @@ public static class RevitButtonTools
             LargeImage = GetIcon(iconImageName, typeof(TCommand).Assembly),
             ToolTipImage = GetIcon(tooltipImageName, typeof(TCommand).Assembly),
             AvailabilityClassName = availabilityClass?.FullName ?? string.Empty,
+            Image = ConvertToSmallImage<TCommand>(iconImageName, smallIconImageName, typeof(TCommand).Assembly),
         };
 
         if (!string.IsNullOrEmpty(helpURL))
@@ -102,7 +109,7 @@ public static class RevitButtonTools
         string buttonText,
         params PushButtonData[] buttonsData)
     {
-        if (buttonsData == null && buttonsData.Length < 2 && buttonsData.Length > 5)
+        if (buttonsData == null || buttonsData.Length < 2 || buttonsData.Length > 5)
         {
             throw new ArgumentException("SplitButton must contain between 2 and 5 buttons.", nameof(buttonsData));
         }
@@ -162,5 +169,45 @@ public static class RevitButtonTools
 
         var uri = new Uri($"pack://application:,,,/{assembly.GetName().Name};component/Resources/{iconName}", UriKind.RelativeOrAbsolute);
         return new BitmapImage(uri);
+    }
+
+    private static BitmapImage ConvertToSmallImage<TCommand>(string iconImageName, string smallIconImageName, Assembly assembly)
+        where TCommand : IExternalCommand
+    {
+        if (!string.IsNullOrEmpty(smallIconImageName))
+        {
+            return GetIcon(smallIconImageName, typeof(TCommand).Assembly);
+        }
+
+        BitmapImage smallImage = null;
+
+        try
+        {
+            var bitmapImage = GetIcon(iconImageName, typeof(TCommand).Assembly);
+
+            // Создание трансформированного изображения
+            var transformedBitmap = new TransformedBitmap(
+                bitmapImage,
+                new ScaleTransform(16.0 / bitmapImage.PixelWidth, 16.0 / bitmapImage.PixelHeight));
+
+            // Конвертация в BitmapImage через MemoryStream
+            var encoder = new PngBitmapEncoder();
+            encoder.Frames.Add(BitmapFrame.Create(transformedBitmap));
+
+            var stream = new MemoryStream();
+            encoder.Save(stream);
+            stream.Position = 0;
+
+            smallImage = new BitmapImage();
+            smallImage.BeginInit();
+            smallImage.CacheOption = BitmapCacheOption.OnLoad;
+            smallImage.StreamSource = stream;
+            smallImage.EndInit();
+            smallImage.Freeze();
+        }
+        catch (Exception)
+        { }
+
+        return smallImage;
     }
 }
