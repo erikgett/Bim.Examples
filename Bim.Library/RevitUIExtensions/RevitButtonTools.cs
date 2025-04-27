@@ -41,7 +41,16 @@ public static class RevitButtonTools
         string smallIconImageName = null)
         where TCommand : IExternalCommand
     {
-        var btnData = CreatePushButtonData<TCommand>(label, tooltip, iconImageName, tooltipImageName, helpURL, longDescription, availabilityClass, smallIconImageName);
+        var btnData = CreatePushButtonData<TCommand>(
+            label,
+            tooltip,
+            iconImageName,
+            tooltipImageName,
+            helpURL,
+            longDescription,
+            availabilityClass,
+            smallIconImageName);
+
         return ribbonPanel.AddItem(btnData) as PushButton;
     }
 
@@ -70,10 +79,7 @@ public static class RevitButtonTools
         string assemblyName = typeof(TCommand).Assembly.Location;
         string commandNamespacePath = typeof(TCommand).FullName;
 
-        if (longDescription == null)
-        {
-            longDescription = string.Empty;
-        }
+        longDescription ??= string.Empty;
 
         PushButtonData btnData = new (
             Guid.NewGuid().ToString(),

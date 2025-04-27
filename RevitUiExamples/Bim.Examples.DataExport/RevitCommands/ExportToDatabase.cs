@@ -6,7 +6,6 @@
 using Autodesk.Revit.Attributes;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.UI;
-using Bim.Examples.DataExport;
 
 namespace Bim.Examples.RevitCommands;
 
@@ -16,9 +15,6 @@ public class ExportToDatabase : IExternalCommand
     public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
     {
         Document document = commandData.Application.ActiveUIDocument.Document;
-
-        Host.GetService<IDataExporter>()
-            .ExportDataToDb(document);
 
         return Result.Succeeded;
     }
