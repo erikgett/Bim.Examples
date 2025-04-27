@@ -7,7 +7,6 @@
 
 	<ItemGroup>
 		<None Remove="BimExamples.addin" />
-		<None Remove="Resources\ExportToDatabase.png" />
 		<None Remove="Runner.txt" />
 		<None Remove="stylecop.json" />
 	</ItemGroup>
@@ -42,10 +41,9 @@
 
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Bim.Library\Bim.Library.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Resource Include="Resources\ExportToDatabase.png" />
+	  <ProjectReference Include="..\Bim.Examples.DataExport\Bim.Examples.DataExport.csproj" />
+	  <ProjectReference Include="..\Bim.Examples.HoleTasks\Bim.Examples.HoleTasks.csproj" />
+	  <ProjectReference Include="..\Bim.Examples.RoomFinishing\Bim.Examples.RoomFinishing.csproj" />
 	</ItemGroup>
 
 	<PropertyGroup>
