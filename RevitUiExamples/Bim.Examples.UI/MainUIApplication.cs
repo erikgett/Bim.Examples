@@ -21,6 +21,7 @@ public class MainUIApplication
         return Result.Succeeded;
     }
 
+
     public Result OnShutdown(UIControlledApplication application)
         => Result.Succeeded;
 }
