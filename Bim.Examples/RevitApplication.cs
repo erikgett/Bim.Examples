@@ -29,6 +29,11 @@ public class RevitApplication
             "di example for export data",
             "ExportToDatabase.png");
 
+        diExampplePanel.CreateButton<DocumentScopeWindow>(
+            "document context binding window",
+            "window with current document context. Context when set project will be set automatical",
+            "ExportToDatabase.png");
+
         ResolveHelper.EndAssemblyResolve();
 
         return Result.Succeeded;

@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<OutputType>Library</OutputType>
+		<UseWPF>true</UseWPF>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<Configurations>R17_Debug;R17_Release;R18_Debug;R18_Release;R19_Debug;R19_Release;R20_Debug;R20_Release;R21_Debug;R21_Release;R22_Debug;R22_Release;R23_Debug;R23_Release;R24_Debug;R24_Release;R25_Debug;R25_Release</Configurations>
 	</PropertyGroup>
@@ -18,7 +19,7 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.2" />
+		<PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.5" />
 		<PackageReference Include="Serilog" Version="4.2.0" />
 		<PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
 		<PackageReference Include="Serilog.Sinks.OpenTelemetry" Version="4.1.1" />
@@ -45,7 +46,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Reference Include="PresentationCore" />
+	  <Reference Include="PresentationFramework" />
+	  <Reference Include="WindowsBase" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Resource Include="Resources\ExportToDatabase.png" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="CurrentDocumentScopeWindow\CurrentDocumentContextWindow.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </None>
 	</ItemGroup>
 
 	<PropertyGroup>

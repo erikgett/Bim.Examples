@@ -7,6 +7,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
 using Autodesk.Revit.UI;
+using Autodesk.Revit.UI.Events;
+using Bim.Examples.CurrentDocumentScopeWindow;
 using Bim.Examples.DataExport;
 using Bim.Library.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +27,7 @@ public static class Host
     /// <param name="uIControlledApplication"><see cref="UIControlledApplication"/>.</param>
     public static void Start(UIControlledApplication uIControlledApplication)
     {
+        uIControlledApplication.ViewActivated += SetWindowContextWhenDocumentSet;
         var builder = Microsoft.Extensions.Hosting.Host.CreateApplicationBuilder(
             new HostApplicationBuilderSettings
                 {
@@ -45,6 +48,8 @@ public static class Host
             }).CreateLogger();
 
         builder.Services.AddDocumentScopeLifeTimeSupport(uIControlledApplication);
+        builder.Services.AddSingleton<CurrentDocumentContextWindow>();
+        builder.Services.AddScoped<DocumentInfo>();
 
         builder.Services.AddSerilog();
 
@@ -52,6 +57,11 @@ public static class Host
 
         host = builder.Build();
         host.Start();
+    }
+
+    private static void SetWindowContextWhenDocumentSet(object sender, ViewActivatedEventArgs e)
+    {
+        GetService<CurrentDocumentContextWindow>().DataContext = GetService<DocumentInfo>();
     }
 
     /// <summary> Stops the host and handle <see cref="IHostedService"/> services. </summary>
@@ -66,7 +76,5 @@ public static class Host
     /// <returns>instance of service.</returns>
     public static T GetService<T>()
         where T : class
-    {
-        return host.Services.GetRequiredService<T>();
-    }
+        => host.GetService<T>();
 }
