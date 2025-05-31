@@ -27,7 +27,6 @@ public static class Host
     /// <param name="uIControlledApplication"><see cref="UIControlledApplication"/>.</param>
     public static void Start(UIControlledApplication uIControlledApplication)
     {
-        uIControlledApplication.ViewActivated += SetWindowContextWhenDocumentSet;
         var builder = Microsoft.Extensions.Hosting.Host.CreateApplicationBuilder(
             new HostApplicationBuilderSettings
                 {
@@ -48,6 +47,8 @@ public static class Host
             }).CreateLogger();
 
         builder.Services.AddDocumentScopeLifeTimeSupport(uIControlledApplication);
+
+        uIControlledApplication.ViewActivated += SetWindowContextWhenDocumentSet;
         builder.Services.AddSingleton<CurrentDocumentContextWindow>();
         builder.Services.AddScoped<DocumentInfo>();
 

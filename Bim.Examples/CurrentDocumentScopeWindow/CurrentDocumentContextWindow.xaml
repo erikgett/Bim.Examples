@@ -4,7 +4,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="clr-namespace:Bim.Examples.CurrentDocumentScopeWindow"
-    mc:Ignorable="d"
+    mc:Ignorable="d" Topmost="True"
     d:DesignHeight="600" d:DesignWidth="500"
     d:DataContext="{d:DesignInstance Type=local:DocumentInfo}">
 
