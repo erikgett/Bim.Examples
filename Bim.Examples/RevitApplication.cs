@@ -18,7 +18,7 @@ public class RevitApplication
     public Result OnStartup(UIControlledApplication application)
     {
         ResolveHelper.BeginAssemblyResolve<RevitApplication>();
-        Host.Start();
+        Host.Start(application);
 
         application.CreateRibbonTab("IT4BIM");
 

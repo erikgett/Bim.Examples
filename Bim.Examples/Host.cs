@@ -6,7 +6,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Reflection;
+using Autodesk.Revit.UI;
 using Bim.Examples.DataExport;
+using Bim.Library.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Serilog;
@@ -20,7 +22,8 @@ public static class Host
     private static IHost host;
 
     /// <summary> Starts the host and configures the application's services. </summary>
-    public static void Start()
+    /// <param name="uIControlledApplication"><see cref="UIControlledApplication"/>.</param>
+    public static void Start(UIControlledApplication uIControlledApplication)
     {
         var builder = Microsoft.Extensions.Hosting.Host.CreateApplicationBuilder(
             new HostApplicationBuilderSettings
@@ -40,6 +43,8 @@ public static class Host
                     ["X-Seq-ApiKey"] = "r8prOJJXAcMu53FfY8VA",
                 };
             }).CreateLogger();
+
+        builder.Services.AddDocumentScopeLifeTimeSupport(uIControlledApplication);
 
         builder.Services.AddSerilog();
 
