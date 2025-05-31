@@ -73,7 +73,6 @@ public class Build : NukeBuild
                 DotNetPack(s => s
                     .SetProject(libraryProject)
                     .SetConfiguration(configuration)
-                    .SetVersion(GetVersion(configuration))
                     .EnableNoBuild()
                     .SetOutputDirectory(ArtifactsDirectory / configuration));
             }
