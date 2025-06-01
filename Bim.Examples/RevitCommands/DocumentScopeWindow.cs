@@ -15,8 +15,7 @@ public class DocumentScopeWindow : IExternalCommand
 {
     public Result Execute(ExternalCommandData commandData, ref string message, ElementSet elements)
     {
-        Host.GetService<CurrentDocumentContextWindow>()
-            .Show();
+        Host.GetService<CurrentDocumentContextWindow>().Show();
 
         return Result.Succeeded;
     }

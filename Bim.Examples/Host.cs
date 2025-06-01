@@ -49,7 +49,7 @@ public static class Host
         builder.Services.AddDocumentScopeLifeTimeSupport(uIControlledApplication);
 
         uIControlledApplication.ViewActivated += SetWindowContextWhenDocumentSet;
-        builder.Services.AddSingleton<CurrentDocumentContextWindow>();
+        builder.Services.AddTransient<CurrentDocumentContextWindow>();
         builder.Services.AddScoped<DocumentInfo>();
 
         builder.Services.AddSerilog();
