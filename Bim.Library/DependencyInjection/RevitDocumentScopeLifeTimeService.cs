@@ -7,7 +7,6 @@ using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
-using System.Reflection;
 using System.Windows;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
@@ -76,7 +75,7 @@ public static class RevitDocumentScopeLifeTimeService
 
             ServiceLifetime.Scoped => GetScopedService<T>(doc),
 
-            ServiceLifetime.Transient => GetOrCreateTransient<T>(doc),
+            ServiceLifetime.Transient => GetOrCreateTransient<T>(host),
 
             _ => throw new NotSupportedException($"Unsupported lifetime: {descriptor.Lifetime}")
         };
@@ -112,7 +111,7 @@ public static class RevitDocumentScopeLifeTimeService
         };
     }
 
-    private static T GetOrCreateTransient<T>(Document doc)
+    private static T GetOrCreateTransient<T>(IHost host)
         where T : class
     {
         var type = typeof(T);
@@ -132,46 +131,11 @@ public static class RevitDocumentScopeLifeTimeService
                 }
             }
 
-            if (!DocumentServiceProviders.TryGetValue(doc, out var providerForWindow))
-            {
-                var serviceCollection = new ServiceCollection();
-                foreach (var descriptor in services)
-                {
-                    serviceCollection.Add(descriptor);
-                }
-
-                providerForWindow = serviceCollection.BuildServiceProvider();
-                DocumentServiceProviders[doc] = providerForWindow;
-            }
-
-            var newWindow = (Window)providerForWindow.GetRequiredService(type);
-            TransientWindowsCache[type] = new WeakReference<Window>(newWindow);
-            return (T)(object)newWindow;
+            return host.Services.GetRequiredService<T>();
         }
         else
         {
-            if (TransientWindowsCache.TryGetValue(type, out var reference) &&
-                reference.TryGetTarget(out var existing) &&
-                existing is T typedExisting)
-            {
-                return typedExisting;
-            }
-
-            if (!DocumentServiceProviders.TryGetValue(doc, out var provider))
-            {
-                var serviceCollection = new ServiceCollection();
-                foreach (var descriptor in services)
-                {
-                    serviceCollection.Add(descriptor);
-                }
-
-                provider = serviceCollection.BuildServiceProvider();
-                DocumentServiceProviders[doc] = provider;
-            }
-
-            var created = ActivatorUtilities.CreateInstance<T>(provider);
-
-            return created;
+            return host.Services.GetRequiredService<T>();
         }
     }
 
