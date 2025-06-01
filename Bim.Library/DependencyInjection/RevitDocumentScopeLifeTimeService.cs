@@ -1,11 +1,14 @@
-﻿// <copyright file="RevitDocumentScopeLifeTimeService.cs" company="Strana">
-// Copyright (c) Strana. All rights reserved.
+﻿// <copyright file="RevitDocumentScopeLifeTimeService.cs" company="IT4BIM">
+// Copyright (c) IT4BIM. All rights reserved.
 // Licensed under the NC license. See LICENSE.md file in the project root for full license information.
 // </copyright>
 
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
+using System.Windows;
 using Autodesk.Revit.DB;
 using Autodesk.Revit.DB.Events;
 using Autodesk.Revit.UI;
@@ -20,6 +23,7 @@ namespace Bim.Library.DependencyInjection;
 public static class RevitDocumentScopeLifeTimeService
 {
     private static readonly ConcurrentDictionary<Document, IServiceProvider> DocumentServiceProviders = [];
+    private static readonly Dictionary<Type, WeakReference<Window>> TransientWindowsCache = [];
 
     private static bool isFirstInitializing = true;
 
@@ -72,7 +76,7 @@ public static class RevitDocumentScopeLifeTimeService
 
             ServiceLifetime.Scoped => GetScopedService<T>(doc),
 
-            ServiceLifetime.Transient => ActivatorUtilities.CreateInstance<T>(host.Services),
+            ServiceLifetime.Transient => GetOrCreateTransient<T>(doc),
 
             _ => throw new NotSupportedException($"Unsupported lifetime: {descriptor.Lifetime}")
         };
@@ -106,6 +110,69 @@ public static class RevitDocumentScopeLifeTimeService
 
             _ => throw new NotSupportedException($"Unsupported lifetime: {descriptor.Lifetime}")
         };
+    }
+
+    private static T GetOrCreateTransient<T>(Document doc)
+        where T : class
+    {
+        var type = typeof(T);
+
+        if (typeof(Window).IsAssignableFrom(type))
+        {
+            if (TransientWindowsCache.TryGetValue(type, out var weakRef)
+                && weakRef.TryGetTarget(out var existingWindow))
+            {
+                if (!existingWindow.IsLoaded && !existingWindow.IsVisible)
+                {
+                    TransientWindowsCache.Remove(type);
+                }
+                else
+                {
+                    return (T)(object)existingWindow;
+                }
+            }
+
+            if (!DocumentServiceProviders.TryGetValue(doc, out var providerForWindow))
+            {
+                var serviceCollection = new ServiceCollection();
+                foreach (var descriptor in services)
+                {
+                    serviceCollection.Add(descriptor);
+                }
+
+                providerForWindow = serviceCollection.BuildServiceProvider();
+                DocumentServiceProviders[doc] = providerForWindow;
+            }
+
+            var newWindow = (Window)providerForWindow.GetRequiredService(type);
+            TransientWindowsCache[type] = new WeakReference<Window>(newWindow);
+            return (T)(object)newWindow;
+        }
+        else
+        {
+            if (TransientWindowsCache.TryGetValue(type, out var reference) &&
+                reference.TryGetTarget(out var existing) &&
+                existing is T typedExisting)
+            {
+                return typedExisting;
+            }
+
+            if (!DocumentServiceProviders.TryGetValue(doc, out var provider))
+            {
+                var serviceCollection = new ServiceCollection();
+                foreach (var descriptor in services)
+                {
+                    serviceCollection.Add(descriptor);
+                }
+
+                provider = serviceCollection.BuildServiceProvider();
+                DocumentServiceProviders[doc] = provider;
+            }
+
+            var created = ActivatorUtilities.CreateInstance<T>(provider);
+
+            return created;
+        }
     }
 
     private static T GetScopedService<T>(Document doc)
