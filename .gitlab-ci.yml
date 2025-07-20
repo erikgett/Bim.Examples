@@ -1,0 +1,36 @@
+stages:
+  - build
+
+variables:
+  PROJECT_PATH: Bim.Library/Bim.Library.csproj
+
+build_revit2021:
+  stage: build
+  image: mono:latest
+  script:
+    - msbuild $PROJECT_PATH /p:Configuration=R21_Release
+  artifacts:
+    paths:
+      - Bim.Library/bin/R21_Release/
+    expire_in: 1 week
+
+build_revit2023:
+  stage: build
+  image: mono:latest
+  script:
+    - msbuild $PROJECT_PATH /p:Configuration=R23_Release
+  artifacts:
+    paths:
+      - Bim.Library/bin/R23_Release/
+    expire_in: 1 week
+
+build_revit2025:
+  stage: build
+  image: mcr.microsoft.com/dotnet/sdk:8.0
+  script:
+    - dotnet restore $PROJECT_PATH
+    - dotnet build $PROJECT_PATH -c R25_Release
+  artifacts:
+    paths:
+      - Bim.Library/bin/R25_Release/
+    expire_in: 1 week
