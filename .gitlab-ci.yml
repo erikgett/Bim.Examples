@@ -2,35 +2,46 @@ stages:
   - build
 
 variables:
-  PROJECT_PATH: Bim.Library/Bim.Library.csproj
+  GIT_SUBMODULE_STRATEGY: recursive
+
+# Revit 2021 и 2023 можно собирать в Linux
+.build_common_template: &build_common
+  image: mcr.microsoft.com/dotnet/sdk:8.0
+  before_script:
+    - dotnet --version
+    - chmod +x ./build.sh || true
+  artifacts:
+    paths:
+      - artifacts/
+    expire_in: 1 week
 
 build_revit2021:
   stage: build
-  image: mono:latest
+  <<: *build_common
   script:
-    - msbuild $PROJECT_PATH /p:Configuration=R21_Release
-  artifacts:
-    paths:
-      - Bim.Library/bin/R21_Release/
-    expire_in: 1 week
+    - ./build.sh Compile --configuration=R21_Release
+    - ./build.sh Pack --configuration=R21_Release
+    - ./build.sh PushToGitLabNugetRepository --configuration=R21_Release
 
 build_revit2023:
   stage: build
-  image: mono:latest
+  <<: *build_common
   script:
-    - msbuild $PROJECT_PATH /p:Configuration=R23_Release
-  artifacts:
-    paths:
-      - Bim.Library/bin/R23_Release/
-    expire_in: 1 week
+    - ./build.sh Compile --configuration=R23_Release
+    - ./build.sh Pack --configuration=R23_Release
+    - ./build.sh PushToGitLabNugetRepository --configuration=R23_Release
 
+# Revit 2025 требует Windows runner с Visual Studio
 build_revit2025:
   stage: build
-  image: mcr.microsoft.com/dotnet/sdk:8.0
+  tags: [windows, visualstudio]
+  before_script:
+    - dotnet --version
   script:
-    - dotnet restore $PROJECT_PATH
-    - dotnet build $PROJECT_PATH -c R25_Release
+    - build.cmd Compile --configuration=R25_Release
+    - build.cmd Pack --configuration=R25_Release
+    - build.cmd PushToGitLabNugetRepository --configuration=R25_Release
   artifacts:
     paths:
-      - Bim.Library/bin/R25_Release/
+      - artifacts/
     expire_in: 1 week
