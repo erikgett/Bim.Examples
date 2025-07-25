@@ -1,8 +1,18 @@
+stages:
+  - build
+
 build_revit2021:
+  stage: build
   tags:
     - windows
+  variables:
+    NUGET_PACKAGES: "$CI_PROJECT_DIR/.nuget/packages"
   script:
+    - echo "?? Установка NUKE (если нужно)"
+    - powershell -Command "Invoke-WebRequest https://nuke.build/powershell -UseBasicParsing | Invoke-Expression"
+    - echo "?? Запуск сборки через NUKE"
     - nuke --target PushToGitLabNugetRepository --configuration R21_Release
   artifacts:
     paths:
       - artifacts/
+    expire_in: 1 week
