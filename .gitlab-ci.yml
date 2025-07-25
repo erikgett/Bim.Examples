@@ -3,8 +3,6 @@ stages:
 
 build_revit2021:
   stage: build
-  tags:
-    - windows  # твой локальный runner должен иметь этот тег
   before_script:
     - dotnet tool restore
     - $env:Path += ";$env:USERPROFILE\.dotnet\tools"
