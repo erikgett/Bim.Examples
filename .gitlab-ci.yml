@@ -6,3 +6,4 @@ build_revit2021:
   artifacts:
     paths:
       - artifacts/
+
