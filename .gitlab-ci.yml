@@ -1,18 +1,9 @@
 stages:
-  - build
+  - test
 
-build_revit2021:
-  stage: build
+test_runner:
+  stage: test
   tags:
     - windows
-  before_script:
-    - dotnet tool restore
-    - $env:Path += ";$env:USERPROFILE\.dotnet\tools"
   script:
-    - nuke --target PushToGitLabNugetRepository --configuration R21_Release
-  artifacts:
-    paths:
-      - artifacts/
-
-
-
+    - echo "✅ GitLab Runner работает на Windows!"
