@@ -3,7 +3,5 @@ stages:
 
 test_runner:
   stage: test
-  tags:
-    - windows
   script:
     - echo "✅ GitLab Runner работает на Windows!"
