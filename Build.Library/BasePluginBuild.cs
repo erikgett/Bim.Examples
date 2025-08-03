@@ -9,6 +9,7 @@ using Serilog;
 
 public abstract class BasePluginBuild : NukeBuild
 {
+
     protected abstract int minorVersion { get; }
     protected abstract int maintenanceVersion { get; }
 
