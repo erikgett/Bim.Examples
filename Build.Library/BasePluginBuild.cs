@@ -59,14 +59,40 @@ public abstract class BasePluginBuild : NukeBuild
             }
         });
 
-    public Target Compile => _ => _
+public Target Compile => _ => _
         .DependsOn(Clean)
         .Executes(() =>
         {
-            DotNetBuild(s => s
-                .SetProjectFile(LibraryProject)
-                .SetVersion(GetVersion(Configuration))
-                .SetConfiguration(Configuration));
+            var csprojPath = LibraryProject.Path;
+            var projectXml = XDocument.Load(csprojPath);
+
+            var ns = projectXml.Root?.Name.Namespace ?? XNamespace.None;
+            var tfm = projectXml.Descendants(ns + "TargetFramework").FirstOrDefault()?.Value
+                   ?? projectXml.Descendants(ns + "TargetFrameworks").FirstOrDefault()?.Value.Split(';').FirstOrDefault();
+
+            if (string.IsNullOrWhiteSpace(tfm))
+                throw new Exception("Cannot determine TargetFramework from .csproj");
+
+            var version = GetVersion(Configuration);
+            
+            DotNetRestore(s => s
+            .SetProjectFile(LibraryProject));
+
+            if (tfm.StartsWith("net4")) // .NET Framework
+            {
+                MSBuildTasks.MSBuild(s => s
+                    .SetTargetPath(LibraryProject.Path)
+                    .SetTargets("Build")
+                    .SetConfiguration(Configuration)
+                    .SetProperty("Version", version));
+            }
+            else // .NET Core / .NET 5+
+            {
+                DotNetBuild(s => s
+                    .SetProjectFile(LibraryProject)
+                    .SetVersion(version)
+                    .SetConfiguration(Configuration));
+            }
         });
 
     public Target PushDllsToPluginServer => _ => _
