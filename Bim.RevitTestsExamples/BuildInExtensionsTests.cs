@@ -22,8 +22,9 @@ public class BuildInExtensionsTests : RevitApiTest
     [HookExecutor<RevitThreadExecutor>]
     public static void Setup()
     {
-        // тут можете указать любой путь для тестовой модели
-        // нельзя тк это может изменить поведение тестов, создание пустого проекта лучшее решение если это возможно
+        // You can specify any path for the test model here.
+        // It is not recommended because it may change the behavior of tests;
+        // creating an empty project is the best solution if possible.
         _document = Application.NewProjectDocument(UnitSystem.Metric);
     }
 

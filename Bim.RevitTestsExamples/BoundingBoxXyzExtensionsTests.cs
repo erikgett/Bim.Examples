@@ -4,9 +4,8 @@ using System.Threading.Tasks;
 
 namespace Bim.RevitTestsExamples;
 
-// Тесты для метода BoundingBox.Contains наследуемся от класса RevitApiTest, чтобы была возможность исользовать RevitAPi
-// Проверяем, правильно ли BoundingBox определяет,
-// находится точка внутри него или нет. Ниже что стоит почитать
+// Tests for the BoundingBox.Contains method. Inherit from RevitApiTest to be able to use the Revit API.
+// Verify whether BoundingBox correctly determines if a point is inside it or not. See also:
 // https://medium.com/@thomhurst/per-test-isolation-in-asp-net-core-a-tunit-aspnetcore-guide-ce09f7d4a05f
 // https://tunit.dev
 public class BoundingBoxXyzExtensionsTests : RevitApiTest
@@ -14,28 +13,28 @@ public class BoundingBoxXyzExtensionsTests : RevitApiTest
     [Test]
     public async Task Contains_PointInsideBox_ReturnsTrue()
     {
-        // тесты пишем по следующей логике Arrange → Act → Assert (Подготовка → Действие → Проверка)
+        // Tests are written following the Arrange → Act → Assert pattern.
 
         // Act
-        // Создаем BoundingBox (трехмерную коробку)
-        // Min — нижняя точка коробки
-        // Max — верхняя точка коробки
+        // Create a BoundingBox (3D box).
+        // Min — the lower corner of the box.
+        // Max — the upper corner of the box.
         var boundingBox = new BoundingBoxXYZ
         {
             Min = new XYZ(0, 0, 0),
             Max = new XYZ(10, 10, 10)
         };
 
-        // Создаем точку, которая явно находится внутри коробки
-        // Она лежит между Min и Max по всем координатам
+        // Create a point that is clearly inside the box.
+        // It lies between Min and Max on all coordinates.
         var pointInside = new XYZ(5, 5, 5);
 
         // Act
         bool isContains = boundingBox.Contains(pointInside);
 
         // Assert
-        // Проверяем, что метод Contains вернет true,
-        // то есть точка действительно находится внутри BoundingBox
+        // Verify that the Contains method returns true,
+        // i.e. the point is indeed inside the BoundingBox.
 
         await Assert.That(isContains).IsTrue();
     }
@@ -55,7 +54,7 @@ public class BoundingBoxXyzExtensionsTests : RevitApiTest
     }
 }
 
-// класс из вашего проекта которые тестируем
+// Class from your project that we are testing
 public static class BoundingBoxExtension
 {
     private const double Tolerance = 1e-9;
