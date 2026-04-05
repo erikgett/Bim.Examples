@@ -1,0 +1,13 @@
+﻿<Project Sdk="Nice3point.Revit.Sdk/6.0.2">
+
+	<PropertyGroup>
+		<OutputType>Exe</OutputType>
+		<Configurations>R21_Debug;R21_Release;R22_Debug;R22_Release;R25_Release;R25_Debug</Configurations>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Nice3point.Revit.Api.RevitAPI" Version="$(RevitVersion).*"/>
+		<PackageReference Include="Nice3point.TUnit.Revit" Version="$(RevitVersion).*-*" />
+	</ItemGroup>
+</Project>
