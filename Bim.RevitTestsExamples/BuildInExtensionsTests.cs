@@ -23,11 +23,8 @@ public class BuildInExtensionsTests : RevitApiTest
     public static void Setup()
     {
         // тут можете указать любой путь для тестовой модели
-        // \\sb-sharegp\Bim2.0\5. Скрипты\999. BIM-отдел\RevitAutomation\Тестовые модели для разработки автоматизации 
-        // МОДЕЛЬ ОБЯЗАТЕЛЬНО СОХРАНЯТЬ ТУТ, учитываем что в рамках тестов сохранять модель тогда
         // нельзя тк это может изменить поведение тестов, создание пустого проекта лучшее решение если это возможно
-        //_document = Application.NewProjectDocument(UnitSystem.Metric);
-        _document = Application.OpenDocumentFile(@"\\sb-sharegp\Bim2.0\5. Скрипты\999. BIM-отдел\RevitAutomation\Тестовые модели для разработки автоматизации\Плагины Revit\3_АР\Отделка ЛК\Тест_Отделка ЛК.rvt");
+        _document = Application.NewProjectDocument(UnitSystem.Metric);
     }
 
     [After(Class)]
